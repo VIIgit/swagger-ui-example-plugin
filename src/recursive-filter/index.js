@@ -58,4 +58,4 @@ function filterArray(array, fn, path) {
     return filtered;
 }
 
-module.exports = {filter, hello};
+module.exports = {filter};
