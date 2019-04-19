@@ -1,0 +1,27 @@
+{
+  "name": "swagger-ui-example-plugin",
+  "version": "1.0.0",
+  "description": "Plugin examples ",
+  "main": "index.js",
+  "scripts": {
+    "build": "browserify ./src/index.js -o ./public/bundle.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/VIIgit/swagger-ui-example-plugin.git"
+  },
+  "keywords": [
+    "swagger-ui",
+    "plugin",
+    "javascript"
+  ],
+  "author": "VIIGit",
+  "bugs": {
+    "url": "https://github.com/VIIgit/swagger-ui-example-plugin/issues"
+  },
+  "homepage": "https://github.com/VIIgit/swagger-ui-example-plugin#readme",
+  "dependencies": {
+    "json-pointer": "^0.6.0",
+    "yaml": "^1.5.0"
+  }
+}
