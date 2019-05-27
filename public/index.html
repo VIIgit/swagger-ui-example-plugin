@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <link rel="shortcut icon" href="/VIIgit/swagger-ui-schema-as-example-plugin/favicon.ico" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no" />
+
+
+
+    <meta name="theme-color" content="#000000" />
+    <link rel="manifest" href="/VIIgit/swagger-ui-schema-as-example-plugin/manifest.json" />
+
+
+    <link rel="stylesheet" type="text/css" href="./swagger-ui.css" >
+
+    <title>React App</title>
+</head>
+
+
+
+<body><noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="editor"></div>
+
+    <script src="utils.js"></script>
+    <script src="swagger-editor.js"></script>
+    <script>
+
+    SwaggerEditorBundle({
+        dom_id: '#editor',
+        showExtensions: true,
+        url: "http://localhost:3000/pet-simple.yaml",
+        //layout: 'StandaloneLayout',
+        presets: [
+            SwaggerEditorStandalonePreset,
+            //MyUpdateSpecActionPlugin,
+            //MyWrapComponentPlugin
+        ],
+        plugins: [
+            StandaloneLayout
+        ]
+    });
+
+    </script>
+
+
+
+
+
+</body>
+
+</html>

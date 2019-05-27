@@ -1,27 +1,29 @@
 {
-  "name": "swagger-ui-example-plugin",
-  "version": "1.0.0",
-  "description": "Plugin examples ",
-  "main": "index.js",
-  "scripts": {
-    "build": "browserify ./src/index.js -o ./public/bundle.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/VIIgit/swagger-ui-example-plugin.git"
-  },
-  "keywords": [
-    "swagger-ui",
-    "plugin",
-    "javascript"
-  ],
-  "author": "VIIGit",
-  "bugs": {
-    "url": "https://github.com/VIIgit/swagger-ui-example-plugin/issues"
-  },
-  "homepage": "https://github.com/VIIgit/swagger-ui-example-plugin#readme",
+  "name": "openapi-example-generator",
+  "version": "0.1.0",
+  "private": true,
   "dependencies": {
+    "json-path": "^0.1.3",
     "json-pointer": "^0.6.0",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-scripts": "2.1.8",
+    "swagger-editor": "^3.6.27",
     "yaml": "^1.5.0"
-  }
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
 }

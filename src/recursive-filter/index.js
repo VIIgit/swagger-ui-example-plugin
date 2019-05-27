@@ -1,5 +1,3 @@
-'use strict';
-
 // Travers recursively an object an call the provided function
 var toString = Object.prototype.toString;
 

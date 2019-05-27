@@ -1,9 +1,24 @@
 "use strict";
 
-const modules = require('./recursive-filter');
-const YAML = require( 'yaml');
-const jsonPointer = require( 'json-pointer');
+import React, { Component } from 'react';
 
+const filterModules = require('./recursive-filter');
+const customControlsModules = require('./react-custom-component');
+const fromJS = require( 'immutable');
 
-window.bundle = {filter: modules.filter, YAML, jsonPointer};
-
+window.utils = {
+    filter: filterModules.filter, 
+    customComponent: {
+        getExampleComponent: customControlsModules.getExampleComponent
+    },
+    fromJS: customControlsModules.fromJS,
+    renderOriginal: function(Original, props, title){
+        if(title){
+            return <div>
+                <h4>{title}</h4>
+                <Original {...props} />
+            </div>
+        }
+        return <Original {...props} />
+    }
+};
