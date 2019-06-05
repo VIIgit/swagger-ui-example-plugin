@@ -1,24 +1,28 @@
 "use strict";
 
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
 
 const filterModules = require('./recursive-filter');
 const customControlsModules = require('./react-custom-component');
-const fromJS = require( 'immutable');
+const immutable = require( 'immutable');
 
-window.utils = {
+window.swaggerPluginUtils = {
     filter: filterModules.filter, 
     customComponent: {
-        getExampleComponent: customControlsModules.getExampleComponent
-    },
-    fromJS: customControlsModules.fromJS,
-    renderOriginal: function(Original, props, title){
-        if(title){
-            return <div>
-                <h4>{title}</h4>
-                <Original {...props} />
-            </div>
+        getExampleComponent: customControlsModules.getExampleComponent,
+        renderOriginal: function (Original, props, title) {
+            if(title){
+                return <div>
+                    <h4>{title}</h4>
+                    <Original {...props} />
+                </div>
+            }
+            return <Original {...props} />
         }
-        return <Original {...props} />
+    },
+    immutable: immutable,
+    log: function(name){
+        console.log(name);
     }
 };

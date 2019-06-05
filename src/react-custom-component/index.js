@@ -35,7 +35,7 @@ export function getExampleComponent ( sampleResponse, examples, HighlightCode ) 
     if ( sampleResponse ) { 
         let sampleResponse2 = stringify(sampleResponse);
         return <div>
-        <HighlightCode className="example" value={ sampleResponse2 } />
+            <HighlightCode className="example" value={ sampleResponse2 } />
         </div>
     }
     return null;
