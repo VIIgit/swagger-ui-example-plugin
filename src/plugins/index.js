@@ -64,7 +64,7 @@ export function WrapModelExamplePlugin(regexApplicationJson = /(application\/jso
         return plugin.apply(this, argumentsCopy);
     };
 }
-export function OneOfExampleComponentPlugin (system, regexApplicationJson = /(application\/json)/) {
+export function OneOfExampleComponentPlugin (system, regexContentType = /(application\/json)/) {
     return {
       statePlugins: {
         example: {
@@ -121,7 +121,7 @@ export function OneOfExampleComponentPlugin (system, regexApplicationJson = /(ap
                     includeWriteOnly: false
                 };
             }
-            if(contentType.match( regexApplicationJson ) ) {
+            if(contentType.match( regexContentType ) ) {
               return <ModelExample 
                   Original={Original}
                   schemaParseConfig={schemaParseConfig} 

@@ -1,3 +1,4 @@
 node_modules/
 build/
 readmee.md
+dist/public/

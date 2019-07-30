@@ -1,6 +1,7 @@
 const path = require("path");
 const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 const glob = require("glob");
+const CopyPlugin = require('copy-webpack-plugin');
 
 module.exports = {
   mode: 'production',
@@ -18,5 +19,12 @@ module.exports = {
       },
     ],
   },
-  plugins: [new UglifyJsPlugin()],
+  plugins: [
+    new UglifyJsPlugin(),
+    new CopyPlugin([
+      { from: 'node_modules/swagger-editor-dist', to: 'public/static/swagger-editor-dist' },
+      { from: 'public/one-of-delivery-addresses.yaml', to: 'public' },
+      { from: 'public/index.html', to: 'public' },
+    ]),
+  ]
 }

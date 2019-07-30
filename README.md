@@ -17,11 +17,8 @@
         dom_id: '#swagger-editor',
         showExtensions: true,
         url: './one-of-delivery-addresses.yaml',
-            
-        layout: 'StandaloneLayout',
         presets: [
-            SwaggerEditorStandalonePreset,
-            WrapModelExampleComponentPlugin
+            OneOfPlugin
         ]
         });
     
