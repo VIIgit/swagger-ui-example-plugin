@@ -1,51 +1,132 @@
-<!doctype html>
+<!DOCTYPE html>
+<!-- HTML for static distribution bundle build -->
 <html lang="en">
 
 <head>
-    <meta charset="utf-8" />
-    <link rel="shortcut icon" href="/VIIgit/swagger-ui-schema-as-example-plugin/favicon.ico" />
-    <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no" />
+    <meta charset="UTF-8">
+    <title>Swagger Editor</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Roboto, sans-serif;
+            font-size: 9px;
+            line-height: 1.42857143;
+            color: #444;
+            margin: 0px;
+        }
+
+        #swagger-editor {
+            font-size: 1.3em;
+            margin-top: 55px;
+        }
+
+        .container {
+            height: 100%;
+            max-width: 880px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        #editor-wrapper {
+            height: 100%;
+            border: 1em solid #000;
+            border: none;
+        }
+
+        .Pane2 {
+            overflow-y: scroll;
+        }
 
 
+        /**/
 
-    <meta name="theme-color" content="#000000" />
-    <link rel="manifest" href="/VIIgit/swagger-ui-schema-as-example-plugin/manifest.json" />
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 10000;
+            height: 55px;
+            display: flex;
+            flex-wrap: wrap;
+            padding: .5rem 1rem;
+            background-color: #333333ee !important;
+        }
 
+        .navbar-brand {
+            color: #e4dfd8 !important;
+            display: inline-block;
+            margin-right: 1rem;
+            white-space: nowrap;
+            text-decoration: none;
 
-    <link rel="stylesheet" type="text/css" href="./swagger-ui.css" >
+            font-size: 1rem;
+            font-weight: 400;
+            line-height: 1.2;
+            font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+        }
 
-    <title>React App</title>
+        a.navbar-brand img {
+            margin-right: 10px;
+        }
+
+    </style>
+    <link href="./swagger-editor-dist/swagger-editor.css" rel="stylesheet">
+    <link rel="icon" type="image/png" href="./swagger-editor-dist/favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="./swagger-editor-dist/favicon-16x16.png" sizes="16x16" />
 </head>
 
+<body>
 
 
-<body><noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="editor"></div>
+    <nav class="navbar navbar-light bg-light"><a class="navbar-brand" href="#"><img
+                src="data:image/png;base64,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"
+                width="30" height="30" class="d-inline-block align-top" alt="">Swagger UI Plugins</a>
+    </nav>
 
-    <script src="utils.js"></script>
-    <script src="swagger-editor.js"></script>
+    <div id="swagger-editor"></div>
+    <script src="./swagger-editor-dist/swagger-editor-bundle.js"> </script>
+    <script src="./swagger-editor-dist/swagger-editor-standalone-preset.js"> </script>
+
+    <script src="./swagger-ui-plugins.min.js"></script>
     <script>
 
-    SwaggerEditorBundle({
-        dom_id: '#editor',
-        showExtensions: true,
-        url: "http://localhost:3000/pet-simple.yaml",
-        //layout: 'StandaloneLayout',
-        presets: [
-            SwaggerEditorStandalonePreset,
-            //MyUpdateSpecActionPlugin,
-            //MyWrapComponentPlugin
-        ],
-        plugins: [
-            StandaloneLayout
-        ]
-    });
+
+
+
+
+
+        /*
+            const filter = window.swaggerPluginUtils.filter;
+            const getExampleComponent = window.swaggerPluginUtils.customComponent.getExampleComponent;
+            const selectComponent = window.swaggerPluginUtils.customComponent.selectComponent;
+            const renderOriginal = window.swaggerPluginUtils.customComponent.renderOriginal;
+            const fromJS = window.swaggerPluginUtils.immutable.fromJS;
+          */
+        const OneOfPlugin = window.swaggerUI.plugins.OneOfExamplePlugin;
+
+
+        window.onload = function () {
+
+            // Build a system
+            const editor = SwaggerEditorBundle({
+                dom_id: '#swagger-editor',
+                showExtensions: true,
+                url: './one-of-delivery-addresses.yaml',
+
+                layout: 'StandaloneLayout',
+                presets: [
+                    SwaggerEditorStandalonePreset,
+                    OneOfPlugin
+                ]
+            });
+
+            window.editor = editor
+        }
 
     </script>
-
-
-
-
 
 </body>
 

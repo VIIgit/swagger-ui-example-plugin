@@ -1,0 +1,108 @@
+openapi: 3.0.1
+info:
+  title: OneOf examples
+  license:
+    name: Apache 2.0
+    url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
+  version: 1.0.0
+servers: 
+ - url: localhost
+paths:
+
+  /delivery-addresses/{id}:
+    parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: string
+    patch:
+      summary: Update delivery address
+      operationId: patchDeleiverAddress
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DeliveryAddress'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/DeliveryAddress'
+      responses:
+        '200':
+          description: successful operation
+          x-content:
+            application/hal-form+json:
+              schema:
+                type: object
+              x-schemaRef: '#/components/schemas/DeliveryAddress'
+
+    get:
+      summary: Read delivery address
+      operationId: getDeliveryAddress
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeliveryAddress'
+
+components:
+  schemas:
+    DeliveryAddress:
+      type: object
+      title: Delivery Address
+      description: OneOf Example
+      properties:
+        address:
+          type: string
+        city:
+          type: string
+        options:
+          oneOf:
+            - type: object
+              title: Delivery Express
+              required:
+                - company
+              properties:
+                company:
+                  x-const: DE
+                shipping:
+                  type: string
+                  default: STANDARD
+                  example: STANDARD
+                  x-oneOf:
+                    - const: FAST
+                      title: 24h + EUR 40
+                    - const: STANDARD
+                      title: 3-5 Days
+            - type: object
+              title: Parcel Quick
+              required:
+                - company
+              properties:
+                company:
+                  x-const: PQ
+                remarks:
+                  type: string
+      oneOf:
+        - type: object
+          title: US
+          properties:
+            state:
+              type: string
+            zipCode:
+              type: string
+          required:
+            - zipCode
+            - state
+        - type: object
+          title: Europe
+          properties:
+            county:
+              type: string
+            postCode:
+              type: string
+          required:
+            - postCode  
+ 

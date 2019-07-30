@@ -1,29 +1,55 @@
 {
-  "name": "openapi-example-generator",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "json-path": "^0.1.3",
-    "json-pointer": "^0.6.0",
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6",
-    "react-scripts": "2.1.8",
-    "swagger-editor": "^3.6.27",
-    "yaml": "^1.5.0"
-  },
+  "name": "swagger-ui-plugins",
+  "version": "1.0.0",
+  "description": "Disclose a referenced schema as json-schema",
+  "main": "index.js",
   "scripts": {
+    "browserify": "browserify ./src/index.js -o ./public/browserify-utils.js",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "build:standalone": "npm run build:react && npm run build:bundle",
+    "build:react": "react-scripts build",
+    "build:bundle": "webpack --config webpack.config.js"
   },
-  "eslintConfig": {
-    "extends": "react-app"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/VIIgit/swagger-ui-plugins.git"
   },
-  "browserslist": [
-    ">0.2%",
-    "not dead",
-    "not ie <= 11",
-    "not op_mini all"
-  ]
+  "keywords": [
+    "swagger-ui",
+    "plugin",
+    "javascript"
+  ],
+  "author": "VIIGit",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/VIIgit/swagger-ui-plugins/issues"
+  },
+  "homepage": "https://github.com/VIIgit/swagger-ui-schema-as-example-plugin#readme",
+  "dependencies": {
+    "glob": "^7.1.4",
+    "immutable": "^4.0.0-rc.12",
+    "path": "^0.12.7",
+    "react": "^16.8.6",
+    "react-scripts": "^3.0.1",
+    "swagger-editor": "^3.6.27",
+    "uglifyjs-webpack-plugin": "^2.1.3"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "webpack-cli": "^3.1.2"
+  }
 }

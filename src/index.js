@@ -1,28 +1,21 @@
-"use strict";
+const React = require('react');
+const filterModules = require('./objectModifier');
+const plugins = require('./plugins');
+const fromJS = require( 'immutable');
 
-import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
-
-const filterModules = require('./recursive-filter');
-const customControlsModules = require('./react-custom-component');
-const immutable = require( 'immutable');
-
-window.swaggerPluginUtils = {
+window.swaggerUI = {
     filter: filterModules.filter, 
-    customComponent: {
-        getExampleComponent: customControlsModules.getExampleComponent,
-        renderOriginal: function (Original, props, title) {
-            if(title){
-                return <div>
-                    <h4>{title}</h4>
-                    <Original {...props} />
-                </div>
-            }
-            return <Original {...props} />
-        }
+    plugins: {
+        OneOfExamplePlugin: plugins.OneOfExampleComponentPlugin
     },
-    immutable: immutable,
-    log: function(name){
-        console.log(name);
+    fromJS: fromJS,
+    renderOriginal: function(Original, props, title){
+        if(title){
+            return <div>
+                <h4>{title}</h4>
+                <Original {...props} />
+            </div>
+        }
+        return <Original {...props} />
     }
 };
