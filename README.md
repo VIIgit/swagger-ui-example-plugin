@@ -3,13 +3,11 @@
 ## OneOfPlugin
 
 
-```
-
+``` javascript
 // load standalone java script
 <script src="./swagger-ui-plugins.min.js"></script>
 
 <script>
-    
     const OneOfPlugin = window.swaggerUI.plugins.OneOfExamplePlugin;
 
     window.onload = function() {
@@ -29,8 +27,8 @@
     
         window.editor = editor
    }
-
 </script>
+```
 
 ## Schema Plugin
 

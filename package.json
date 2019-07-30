@@ -34,7 +34,7 @@
     "path": "^0.12.7",
     "react": "^16.8.6",
     "react-scripts": "^3.0.1",
-    "swagger-editor": "^3.6.27",
+    "swagger-editor": "^3.6.31",
     "uglifyjs-webpack-plugin": "^2.1.3"
   },
   "browserslist": {
