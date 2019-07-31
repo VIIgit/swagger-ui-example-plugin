@@ -18,16 +18,15 @@ Analysis example view of OAS3 Schemas in non executing mode only for OneOf or An
 <script src="./swagger-ui-plugins.min.js"></script>
 
 <script>
-    const OneOfPlugin = window.swaggerUI.plugins.OneOfExamplePlugin;
-
     window.onload = function() {
-        // Build a system
+        const OneOfPlugin = window.swaggerUI.plugins.OneOfExamplePlugin;
+        const regexContentType = /(application\/)[a-z-+]*(json)/;
         const editor = SwaggerEditorBundle({
         dom_id: '#swagger-editor',
         showExtensions: true,
         url: './one-of-delivery-addresses.yaml',
         presets: [
-            OneOfPlugin
+            OneOfPlugin(regexContentType)
         ]
         });
         window.editor = editor

@@ -63,7 +63,7 @@ export function WrapModelExamplePlugin(regexApplicationJson = /(application\/jso
     return plugin.apply(this, argumentsCopy);
   };
 }
-export function OneOfExampleComponentPlugin(system, regexContentType = /(application\/json)/) {
+export function OneOfExampleComponentPlugin(regexContentType = /(application\/json)/) {
   return {
     wrapComponents: {
       modelExample: (Original, system) => (props) => {
