@@ -10,7 +10,7 @@ function isCollection(value) {
     return Array.isArray(value) || isPlainObject(value);
 }
 
-function filter(value, fn, path='', objPath='#', parent=undefined, parentKey=undefined) {
+function filter(value, fn, path = '', objPath = '#', parent = undefined, parentKey = undefined) {
     if (Array.isArray(value)) {
         return filterArray(value, fn, path, objPath, parent, parentKey);
     } else if (isPlainObject(value)) {
@@ -27,12 +27,12 @@ function filterObject(obj, fn, path, objPath, parent, parentKey) {
     for (key in obj) {
         var subpath = path + '/' + key;
         var objSubpath;
-        if(key === 'properties' && obj.type === 'object'){
+        if (key === 'properties' && obj.type === 'object') {
             objSubpath = objPath;
         } else {
             objSubpath = objPath + '/' + key;
         }
-        
+
         value = filter(obj[key], fn, subpath, objSubpath, obj, key);
 
         if (fn.call(obj, value, key, obj, subpath, objSubpath, parent, parentKey)) {

@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from "prop-types";
 
-import {stringify} from '../../immutable-converter';
+import { stringify } from '../../immutable-converter';
 
 import OneOfSelector from '../one-of-selector';
-import {fromJS} from 'immutable';
-import {extractModel} from './oneOfOrAnyOfExtractor';
+import { fromJS } from 'immutable';
+import { extractModel } from './oneOfOrAnyOfExtractor';
 
 class ModelExample extends Component {
   static propTypes = {
@@ -15,15 +15,15 @@ class ModelExample extends Component {
     oneOfOptions: PropTypes.object,
     patchedSchemaJS: PropTypes.object,
     memoizedSampleFromSchema: PropTypes.func.isRequired
-  } 
+  }
 
   constructor(props) {
-    super(props);    
+    super(props);
     this.state = {
       manualMode: false,
       oneOfOptions: undefined,
       selectedOneOfOptions: {},
-      patchedSchemaJS: undefined      
+      patchedSchemaJS: undefined
     };
     this.patchSchema = this.patchSchema.bind(this);
   }
@@ -32,39 +32,39 @@ class ModelExample extends Component {
     this.patchSchema();
   }
 
-  getExampleComponent ( sampleResponse, examples, HighlightCode ) {
-    
-    if ( examples && examples.size ) {
-        return examples.entrySeq().map( ([ key, example ]) => {
+  getExampleComponent(sampleResponse, examples, HighlightCode) {
+
+    if (examples && examples.size) {
+      return examples.entrySeq().map(([key, example]) => {
         let exampleValue = stringify(example);
-        
-        return (<div key={ key }>
-            <h5>{ key }</h5>
-            <HighlightCode className="example" value={ exampleValue } />
+
+        return (<div key={key}>
+          <h5>{key}</h5>
+          <HighlightCode className="example" value={exampleValue} />
         </div>)
-        }).toArray()
+      }).toArray()
     }
 
-    if ( sampleResponse ) { 
-        let sampleResponseStr = stringify(sampleResponse);
-        return <HighlightCode className="example" value={ sampleResponseStr } />
+    if (sampleResponse) {
+      let sampleResponseStr = stringify(sampleResponse);
+      return <HighlightCode className="example" value={sampleResponseStr} />
     }
     return null;
   }
 
-  patchSchema(changedState){
+  patchSchema(changedState) {
 
-    var {manualMode, selectedOneOfOptions} = this.state;
-    
-    var oneOfExtractModelSetting = Object.assign( {
+    var { manualMode, selectedOneOfOptions } = this.state;
+
+    var oneOfExtractModelSetting = Object.assign({
       manualMode: manualMode,
       oneOfOptions: undefined,
       selectedOneOfOptions: selectedOneOfOptions,
       patchedSchemaJS: undefined
-    },changedState);
+    }, changedState);
 
     oneOfExtractModelSetting = extractModel(this.props, oneOfExtractModelSetting);
-    
+
     this.setState({
       manualMode: oneOfExtractModelSetting.manualMode,
       oneOfOptions: oneOfExtractModelSetting.oneOfOptions,
@@ -74,22 +74,22 @@ class ModelExample extends Component {
   }
 
   render() {
-    const {Original, schemaParseConfig, memoizedSampleFromSchema, highlightCode} = this.props;
-    const {manualMode, oneOfOptions, selectedOneOfOptions, patchedSchemaJS} = this.state;
+    const { Original, schemaParseConfig, memoizedSampleFromSchema, highlightCode } = this.props;
+    const { manualMode, oneOfOptions, selectedOneOfOptions, patchedSchemaJS } = this.state;
 
-    if( oneOfOptions){
+    if (oneOfOptions) {
       const example = memoizedSampleFromSchema(patchedSchemaJS, schemaParseConfig);
-      const exampleComponent =  this.getExampleComponent(example, undefined, highlightCode);
+      const exampleComponent = this.getExampleComponent(example, undefined, highlightCode);
       const orderedSchema = fromJS(patchedSchemaJS);
-      const updatedProps = Object.assign({}, this.props, {example: exampleComponent, schema: orderedSchema});
-        
+      const updatedProps = Object.assign({}, this.props, { example: exampleComponent, schema: orderedSchema });
+
       return <div>
         <Original {...updatedProps} />
-        <OneOfSelector 
+        <OneOfSelector
           manualMode={manualMode}
-          oneOfOptions={manualMode ? oneOfOptions: undefined }
-          selectedOneOfOptions={manualMode ? selectedOneOfOptions :{}}
-          onSelectedOneOfOptionChanged={this.patchSchema} 
+          oneOfOptions={manualMode ? oneOfOptions : undefined}
+          selectedOneOfOptions={manualMode ? selectedOneOfOptions : {}}
+          onSelectedOneOfOptionChanged={this.patchSchema}
         />
       </div>
     }
