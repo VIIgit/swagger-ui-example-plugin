@@ -77,7 +77,7 @@ class ModelExample extends Component {
     const { Original, schemaParseConfig, memoizedSampleFromSchema, highlightCode } = this.props;
     const { manualMode, oneOfOptions, selectedOneOfOptions, patchedSchemaJS } = this.state;
 
-    if (oneOfOptions) {
+    if (oneOfOptions && oneOfOptions.length>0) {
       const example = memoizedSampleFromSchema(patchedSchemaJS, schemaParseConfig);
       const exampleComponent = this.getExampleComponent(example, undefined, highlightCode);
       const orderedSchema = fromJS(patchedSchemaJS);
