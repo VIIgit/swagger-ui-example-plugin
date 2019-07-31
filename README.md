@@ -2,14 +2,13 @@
 
 ## OneOfPlugin
 
-Analysis example view of OAS3 Schemas in non executing mode only for OneOf or AnyOf schemas as they're not displayed at all.
+This plugin allows you to display OneOf- or AnyOf- structures in the **Example Value** preview that would otherwise not be displayed. Applies only to OAS3 Schemas and in non-executing mode.
 
 ![ScreenCast](./OneOfExample.gif "Choose OneOf or AnyOf your schema")
 
-
 ### Issues
 
-- JSON Example is provided by Swagger-Ui method, which can return non up-to-date cached data.
+- **Example Value** is provided by a Swagger-UI method, which can return non up-to-date cached data.
 
 ### Example Configuration
 
