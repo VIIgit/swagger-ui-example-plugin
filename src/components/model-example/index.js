@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from "prop-types";
 
-import {stringify} from '../immutable-converter';
+import {stringify} from '../../immutable-converter';
 
-import OneOfSelector from './OneOfSelector';
+import OneOfSelector from '../one-of-selector';
 import {fromJS} from 'immutable';
-import {extractModel} from './oneOfExample';
+import {extractModel} from './oneOfOrAnyOfExtractor';
 
 class ModelExample extends Component {
   static propTypes = {

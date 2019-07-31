@@ -3,7 +3,7 @@ import React from 'react';
 import {stringify} from '../immutable-converter';
 import {fromJS} from 'immutable';
 import filter from '../objectModifier';
-import ModelExample from './ModelExample';
+import ModelExample from '../components/model-example';
 
 export function getExampleComponent ( sampleResponse, examples, HighlightCode ) {
     
@@ -66,7 +66,7 @@ export function WrapModelExamplePlugin(regexApplicationJson = /(application\/jso
 }
 export function OneOfExampleComponentPlugin (system, regexContentType = /(application\/json)/) {
     return {
-      statePlugins: {
+      XXXstatePlugins: {
         example: {
           actions: {
             oneOfModelSelection: (e, id) => {

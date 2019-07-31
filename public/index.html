@@ -74,8 +74,6 @@
 
     </style>
     <link href="./static/swagger-editor-dist/swagger-editor.css" rel="stylesheet">
-    <link rel="icon" type="image/png" href="./swagger-editor-dist/favicon-32x32.png" sizes="32x32" />
-    <link rel="icon" type="image/png" href="./swagger-editor-dist/favicon-16x16.png" sizes="16x16" />
 </head>
 
 <body>
@@ -88,14 +86,9 @@
 
     <div id="swagger-editor"></div>
     <script src="./static/swagger-editor-dist/swagger-editor-bundle.js"> </script>
-    <script src="./static/swagger-editor-dist/swagger-editor-standalone-preset.js"> </script>
 
     <script src="./static/js/swagger-ui-plugins.min.js"></script>
     <script>
-
-
-
-
 
 
         /*
@@ -115,10 +108,7 @@
                 dom_id: '#swagger-editor',
                 showExtensions: true,
                 url: './one-of-delivery-addresses.yaml',
-
-                layout: 'StandaloneLayout',
                 presets: [
-                    SwaggerEditorStandalonePreset,
                     OneOfPlugin
                 ]
             });

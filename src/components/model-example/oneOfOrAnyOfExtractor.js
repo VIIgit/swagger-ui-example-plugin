@@ -1,5 +1,5 @@
-import {stringify} from '../immutable-converter';
-import filter from '../objectModifier';
+import {stringify} from '../../immutable-converter';
+import filter from '../../objectModifier';
 
 function extractOneOfOrAnyOfAsExample (schemaJS, oneOfExtractModelSetting, memoizedSampleFromSchema, schemaParseConfig) {
     
