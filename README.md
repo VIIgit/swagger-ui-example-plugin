@@ -6,6 +6,8 @@ This plugin allows you to display OneOf- or AnyOf- structures in the **Example V
 
 ![ScreenCast](./OneOfExample.gif "Choose OneOf or AnyOf your schema")
 
+[Demo](https://www.vii.ch/swaggerplugins)
+
 ### Issues
 
 - **Example Value** is provided by a Swagger-UI method, which can return non up-to-date cached data.

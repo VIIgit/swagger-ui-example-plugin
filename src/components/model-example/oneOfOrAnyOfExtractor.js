@@ -1,4 +1,4 @@
-import { stringify } from '../../immutable-converter';
+import { stringify } from '../swagger-ui/utils';
 import filter from '../../objectModifier';
 
 function optionIndex(oneOfExtractModelSetting, id, maxIndex) {
@@ -66,8 +66,8 @@ function extractOneOfOrAnyOfAsExample(schemaJS, oneOfExtractModelSetting, memoiz
   return parseResult;
 }
 
-export function extractModel(props, oneOfExtractModelSetting) {
-  const { schema, memoizedSampleFromSchema, schemaParseConfig } = props;
+export function extractModel(props, oneOfExtractModelSetting, memoizedSampleFromSchema) {
+  const { schema, schemaParseConfig } = props;
 
   oneOfExtractModelSetting.patchedSchemaJS = schema.toJS();
   var parseResult = extractOneOfOrAnyOfAsExample(oneOfExtractModelSetting.patchedSchemaJS, oneOfExtractModelSetting, memoizedSampleFromSchema, schemaParseConfig);

@@ -24,6 +24,10 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/DeliveryAddress'
+            examples:
+              A:
+                value:
+                  xxx: xxxx
           application/xml:
             schema:
               $ref: '#/components/schemas/DeliveryAddress'
@@ -46,7 +50,28 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DeliveryAddress'
-
+    put:
+      summary: Update delivery address
+      operationId: putDeleiverAddress
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DeliveryAddress'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/DeliveryAddress'
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/hal-form+json:
+              schema:
+                type: object
+              x-schemaRef: '#/components/schemas/DeliveryAddress'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/DeliveryAddress'              
 components:
   schemas:
     DeliveryAddress:

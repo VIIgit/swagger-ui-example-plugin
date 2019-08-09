@@ -1,12 +1,16 @@
 import React from 'react';
 
-import { stringify } from '../immutable-converter';
+import { stringify } from '../components/swagger-ui/utils';
 import { fromJS } from 'immutable';
 import filter from '../objectModifier';
+//import ModelExample from '../components/model-example';
 import ModelExample from '../components/model-example';
 
+import Response from '../components/response';
+import RequestBody from  '../components/swagger-ui/request-body';
+
 export function getExampleComponent(sampleResponse, examples, HighlightCode) {
-  'use strict';
+
   if (examples && examples.size) {
     return examples.entrySeq().map(([key, example]) => {
       let exampleValue = stringify(example);
@@ -65,12 +69,37 @@ export function WrapModelExamplePlugin(regexApplicationJson = /(application\/jso
 }
 export function OneOfExampleComponentPlugin(regexContentType = /(application\/json)/) {
   return {
+    fn: {
+      oneOfPlugin: { 
+        matchContentType: function(contentType){
+          return contentType.match(regexContentType.source)  
+        }}
+    },
+    components: {
+      response: Response,
+      modelExample: ModelExample,
+      //requestBody: RequestBody
+    },
     wrapComponents: {
-      modelExample: (Original, system) => (props) => {
+      parameterRow: (Original, system) => (props) => {
 
-        let { specPath, isExecute } = props;
+        return <div> 
+          parameterRowparameterRowparameterRowparameterRow
+          <Original {...props}></Original>
+        </div>
+      },
+      requestBody: (Original, system) => (props) => {
 
-        if (system.specSelectors.isOAS3() && !isExecute) {
+        return <div> 
+          requestBodyrequestBodyrequestBodyrequestBody
+          <Original {...props}></Original>
+        </div>
+      },
+      modelExampleX: (Original, system) => (props) => {
+
+        let { specPath, isExecute, response, getConfigs } = props;
+        
+        if (false && system.specSelectors.isOAS3() && !isExecute) {
 
           let schemaParseConfig;
           let contentType = getRequestContentType(specPath);
@@ -86,6 +115,7 @@ export function OneOfExampleComponentPlugin(regexContentType = /(application\/js
               includeWriteOnly: false
             };
           }
+          //var examples=response.get("examples");
           if (contentType.match(regexContentType)) {
             return <ModelExample
               Original={Original}
@@ -96,7 +126,7 @@ export function OneOfExampleComponentPlugin(regexContentType = /(application\/js
             />
           }
         }
-        return <Original {...props} />;
+        return <Original regexContentType = {regexContentType} { ...props} />;
       }
     }
   }
